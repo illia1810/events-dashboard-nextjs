@@ -1,10 +1,14 @@
 import EventList from "../components/events/EventList";
-import { getAllEvents } from "../../dummy-data";
 import { getFeaturedEvents } from "@/utils/api-util";
+import Head from "next/head";
 
 function HomePage(props) {
   return (
     <div>
+      <Head>
+        <title>Event Dashboard</title>
+        <meta name='description' content='Find out enjoyed events for you' />
+      </Head>
       <EventList items={props.events} />
     </div>
   )

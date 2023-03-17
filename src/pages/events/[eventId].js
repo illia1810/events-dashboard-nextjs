@@ -3,6 +3,7 @@ import EventLogistics from "@/components/event-detail/EventLogistics";
 import EventSummary from "@/components/event-detail/EventSummary";
 import ErrorMessage from "@/components/UI/ErrorMessage";
 import { getAllEvents, getEventsById } from "@/utils/api-util";
+import Head from "next/head";
 
 function EventDetailPage(props) {
   const event = props.selectedEvent;
@@ -14,6 +15,10 @@ function EventDetailPage(props) {
       </div>
     ) : (
       <>
+        <Head>
+          <title>{event.title}</title>
+          <meta name='description' content={event.description} />
+        </Head>
         <EventSummary title={event.title} />
         <EventLogistics date={event.date} address={event.location} image={event.image} imageAlt={event.title} />
         <EventContent>

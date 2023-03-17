@@ -3,10 +3,18 @@ import ResultsTitle from "@/components/events/ResultTitle";
 import Button from "@/components/UI/Button";
 import ErrorMessage from "@/components/UI/ErrorMessage";
 import { getFilteredEvents } from "@/utils/api-util";
+import Head from "next/head";
 
 function FilteredEventsPage(props) {
   const {filteredEvents, yearForSearch, monthForSearch, hasError} = props;
   const fullSearchDate = new Date(yearForSearch, monthForSearch - 1);
+
+  const pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name='description' content={`Events ${monthForSearch} ${yearForSearch}`} />
+    </Head>
+  );
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
@@ -38,6 +46,7 @@ function FilteredEventsPage(props) {
 
   return (
     <>
+      {pageHeadData}
       <ResultsTitle date={fullSearchDate} />
       <EventList items={filteredEvents} />
     </>
